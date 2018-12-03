@@ -1,0 +1,24 @@
+package com.lgguan.springcloud.myservicemysql.controller;
+
+import com.lgguan.springcloud.myservicemysql.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    UserService userService;
+
+    @GetMapping("/users/{username}")
+    public Object find(@PathVariable("username") String username) {
+        return userService.findByUsername(username);
+    }
+
+    @GetMapping("/users")
+    public Object list() {
+        return userService.findAll();
+    }
+}
